@@ -1,0 +1,119 @@
+﻿@{
+    Layout = null; // Üst menüyü gizler
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gizli Kasa - Zeynep's Notebook</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #fdfaf2, #fbc2eb);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .kilit-kutusu {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(251, 194, 235, 0.5);
+            max-width: 400px;
+            width: 90%;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @@keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .baslik {
+            font-family: 'Caveat', cursive;
+            font-size: 3.5rem;
+            color: #ff8b94;
+            margin-bottom: 5px;
+        }
+
+        .alt-baslik {
+            color: #8fa0c9;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .form-control-custom {
+            border-radius: 20px;
+            border: 2px solid #ffdae0;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            background: #fff;
+            transition: 0.3s;
+        }
+
+            .form-control-custom:focus {
+                outline: none;
+                border-color: #ff8b94;
+                box-shadow: 0 0 15px rgba(255, 139, 148, 0.3);
+            }
+
+        .btn-kilit {
+            background: linear-gradient(45deg, #ff8b94, #ffdae0);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+            .btn-kilit:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 20px rgba(255, 139, 148, 0.4);
+            }
+
+        .hata-mesaji {
+            color: #d15661;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="kilit-kutusu">
+        <h1 class="baslik">Gizli Kasa 🔐</h1>
+        <p class="alt-baslik">Zeynep's Notebook'a Hoş Geldin</p>
+        @if (ViewBag.Hata != null)
+        {
+            <div class="hata-mesaji">@ViewBag.Hata</div>
+        }
+        <form action="/Home/GirisYap" method="post">
+            <input type="password" name="sifre" class="form-control-custom" placeholder="Şifrenizi Girin" required autocomplete="off">
+            <button type="submit" class="btn-kilit">Kilidi Aç ✨</button>
+        </form>
+    </div>
+</body>
+</html>

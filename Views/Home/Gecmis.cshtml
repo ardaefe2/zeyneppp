@@ -1,0 +1,37 @@
+﻿@model List<ZeynepsNotebook.Models.GunlukItem>
+
+@{
+    ViewData["Title"] = "Geçmiş Günlükler";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 style="color: #ff6b81; font-family: 'Comic Sans MS', cursive, sans-serif;">🕰️ Geçmiş Günlüklerin</h2>
+        <a href="/Home/Index" class="btn btn-outline-secondary">⬅️ Ana Sayfaya Dön</a>
+    </div>
+
+    <div class="row">
+        @if (Model.Count == 0)
+        {
+            <div class="col-12 text-center mt-5">
+                <h5 class="text-muted">Henüz geçmişe ait bir kaydın yok. Günlük yazmaya devam et! 🌟</h5>
+            </div>
+        }
+        else
+        {
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm h-100" style="background-color: #fdf5e6; border-radius: 15px;">
+                        <div class="card-header bg-transparent border-0 pt-3 pb-0">
+                            <h5 class="text-secondary">📅 @item.Tarih.ToString("dd MMMM yyyy, dddd")</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text" style="white-space: pre-wrap;">@item.GunlukMetni</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

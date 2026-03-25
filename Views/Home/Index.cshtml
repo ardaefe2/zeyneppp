@@ -1,0 +1,320 @@
+﻿@{
+    ViewData["Title"] = "Zeynep's Notebook";
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        font-family: 'Nunito', sans-serif;
+        color: #4a4a4a;
+        background: linear-gradient(-45deg, #fbc2eb, #a6c1ee, #fbc2eb, #fad0c4);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+    }
+
+    @@keyframes gradientBG {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    /* Akıllı Karşılama ve Polaroid */
+    .ana-baslik {
+        font-family: 'Caveat', cursive;
+        font-size: 4rem;
+        color: #fff;
+        text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+    }
+
+    .alt-baslik {
+        font-family: 'Nunito', sans-serif;
+        font-size: 1.2rem;
+        color: #fff;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        letter-spacing: 2px;
+    }
+
+    .polaroid-kutu {
+        display: inline-block;
+        background: white;
+        padding: 10px 10px 25px 10px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        border-radius: 5px;
+        transform: rotate(3deg);
+        transition: all 0.3s ease;
+    }
+
+        .polaroid-kutu:hover {
+            transform: rotate(0deg) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+    .polaroid-foto {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border: 1px solid #eee;
+    }
+
+    /* Kart ve Kutu Stilleri */
+    .kart-baslik {
+        font-family: 'Caveat', cursive;
+        font-size: 2.8rem;
+    }
+
+    .aesthetic-card {
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease;
+    }
+
+        .aesthetic-card:hover {
+            transform: translateY(-5px);
+        }
+
+    .form-control {
+        border-radius: 15px;
+        border: 1px solid #ffdae0;
+        background-color: #fafafa;
+        resize: none;
+    }
+
+        .form-control:focus {
+            box-shadow: 0 0 12px rgba(251, 194, 235, 0.5);
+            border-color: #fbc2eb;
+        }
+
+    .btn-custom {
+        border-radius: 15px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .sayac-kutusu {
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px dashed #fbc2eb;
+    }
+
+    .sayac-rakamlar {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #ff8b94;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .motivasyon-kutusu {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(8px);
+        border-radius: 20px;
+        border: 2px dashed #ff8b94;
+        display: inline-block;
+        padding: 15px 30px;
+        box-shadow: 0 5px 15px rgba(251, 194, 235, 0.4);
+        transition: transform 0.3s ease;
+    }
+
+        .motivasyon-kutusu:hover {
+            transform: scale(1.02);
+        }
+
+    .motivasyon-yazi {
+        font-family: 'Caveat', cursive;
+        font-size: 2.2rem;
+        color: #d15661;
+        margin: 0;
+    }
+
+    /* YENİ: Ruh Hali (Mood) Butonları Stili */
+    .mood-btn {
+        font-size: 2.8rem;
+        background: transparent;
+        border: none;
+        transition: transform 0.2s ease, filter 0.2s ease;
+        filter: grayscale(20%); /* İlk başta hafif soluk dursunlar */
+    }
+
+        .mood-btn:hover {
+            transform: scale(1.25) translateY(-5px); /* Üstüne gelince büyüsün ve zıplasın */
+            filter: grayscale(0%); /* Tam renkli olsun */
+        }
+
+        .mood-btn:focus {
+            outline: none;
+            box-shadow: none;
+        }
+</style>
+
+<div class="container mt-4 mb-5">
+
+    <div class="row align-items-center mb-4">
+        <div class="col-md-9 text-center text-md-start ps-md-5">
+            <h2 class="ana-baslik m-0">✨ @ViewBag.KarsilamaMesaji ✨</h2>
+            <h5 class="alt-baslik mt-2">~ ZEYNEP'S NOTEBOOK ~</h5>
+        </div>
+
+        <div class="col-md-3 text-center mt-3 mt-md-0">
+            @if (ViewBag.GununResmi != null)
+            {
+                <div class="polaroid-kutu" title="Günün Anısı 📸">
+                    <img src="@ViewBag.GununResmi" class="polaroid-foto" alt="Anı">
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-10 text-center">
+            <div class="motivasyon-kutusu">
+                <p class="motivasyon-yazi">💭 "@ViewBag.GununSozu"</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-8 text-center">
+            <div class="p-3 aesthetic-card" style="border: 2px dashed #b2ad7f;">
+                <h5 class="text-muted mb-3" style="font-family: 'Nunito', sans-serif; font-weight: bold;">Bugün nasıl hissediyorsun? 🌸</h5>
+
+                <div class="d-flex justify-content-center gap-2 gap-md-4 mb-2">
+                    <button class="btn mood-btn" onclick="modSec('mutlu')" title="Mutlu / Enerjik">🤩</button>
+                    <button class="btn mood-btn" onclick="modSec('sakin')" title="Sakin / Huzurlu">😌</button>
+                    <button class="btn mood-btn" onclick="modSec('yorgun')" title="Yorgun / Üzgün">🥺</button>
+                    <button class="btn mood-btn" onclick="modSec('sinirli')" title="Sinirli / Stresli">😠</button>
+                </div>
+
+                <p id="mood-mesaj" class="mt-3 mb-0" style="font-family: 'Caveat', cursive; font-size: 2rem; color: #d15661; transition: 0.3s; min-height: 45px;"></p>
+
+                <script>
+                    function modSec(mod) {
+                        var mesajKutusu = document.getElementById('mood-mesaj');
+                        if(mod === 'mutlu') {
+                            mesajKutusu.innerHTML = "Bu enerjini hiçbir şeyin bozmasına izin verme! Harikasın! ✨";
+                        } else if(mod === 'sakin') {
+                            mesajKutusu.innerHTML = "Oh mis! Günün hep böyle huzurla aksın gitsin... ☕";
+                        } else if(mod === 'yorgun') {
+                            mesajKutusu.innerHTML = "Hemen sıcak bir şeyler içip biraz dinlenmelisin. Her şey geçecek, unutma! 💖";
+                        } else if(mod === 'sinirli') {
+                            mesajKutusu.innerHTML = "Derin bir nefes al... Hiçbir şey senin o güzel canını sıkmaya değmez! 🦋";
+                        }
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-8">
+            <div class="card p-4 aesthetic-card sayac-kutusu text-center">
+                @if (ViewBag.Sayac != null)
+                {
+                    <h4 class="kart-baslik mb-3" style="color: #8fa0c9;">@ViewBag.Sayac.Baslik</h4>
+                    <div id="canli-sayac" class="sayac-rakamlar mb-3">Hesaplanıyor...</div>
+                    <a href="/Home/SayacSil" class="btn btn-outline-danger btn-sm" style="border-radius: 15px; width: 120px; margin: 0 auto; font-weight: bold;">İptal Et ❌</a>
+
+                    <script>
+                        var hedefTarih = new Date('@(((ZeynepsNotebook.Models.SayacItem)ViewBag.Sayac).HedefTarih.ToString("yyyy-MM-ddTHH:mm:ss"))').getTime();
+                        var interval = setInterval(function() {
+                            var simdi = new Date().getTime();
+                            var fark = hedefTarih - simdi;
+                            if (fark < 0) { clearInterval(interval); document.getElementById("canli-sayac").innerHTML = "🎉 ZAMAN GELDİ! 🎉"; return; }
+                            var gun = Math.floor(fark / (1000 * 60 * 60 * 24));
+                            var saat = Math.floor((fark % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                            var dakika = Math.floor((fark % (1000 * 60 * 60)) / (1000 * 60));
+                            var saniye = Math.floor((fark % (1000 * 60)) / 1000);
+                            document.getElementById("canli-sayac").innerHTML = gun + " Gün " + saat + " Saat " + dakika + " Dk " + saniye + " Sn";
+                        }, 1000);
+                    </script>
+                }
+                else
+                {
+                    <h5 class="text-muted mb-3" style="font-family: 'Nunito', sans-serif; font-weight: bold;">⏳ Özel Bir Gün İçin Geri Sayım Başlat</h5>
+                    <form action="/Home/SayacKaydet" method="post" class="d-flex justify-content-center align-items-center gap-2 flex-wrap">
+                        <input type="text" name="baslik" class="form-control" placeholder="Örn: Yıl Dönümümüze..." required style="max-width: 250px;">
+                        <input type="datetime-local" name="hedefTarih" class="form-control" required style="max-width: 220px;">
+                        <button type="submit" class="btn text-white btn-custom" style="background-color: #8fa0c9;">Başlat 🚀</button>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card p-4 aesthetic-card h-100">
+                <h4 class="text-center mb-3 kart-baslik" style="color: #ff8b94;">📝 Notların</h4>
+                <form action="/Home/NotKaydet" method="post" class="d-flex flex-column h-100">
+                    <textarea name="notIcerigi" class="form-control flex-grow-1" style="min-height: 250px;" placeholder="Aklına gelenleri buraya karalayabilirsin...">@ViewBag.KayitliNot</textarea>
+                    <button type="submit" class="btn btn-outline-danger mt-3 btn-custom w-100">Kaydet</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card p-4 aesthetic-card h-100">
+                <h4 class="text-center mb-3 kart-baslik" style="color: #8fa0c9;">✅ Yapılacaklar</h4>
+                <div class="mt-2" style="max-height: 250px; overflow-y: auto; padding-right: 5px;">
+                    @if (ViewBag.Gorevler != null)
+                    {
+                        foreach (var gorev in (List<ZeynepsNotebook.Models.GorevItem>)ViewBag.Gorevler)
+                        {
+                            <div class="d-flex justify-content-between align-items-center mb-2 p-2" style="background-color: rgba(255,255,255,0.9); border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                                <div>
+                                    <a href="/Home/GorevDurumu/@gorev.Id" style="text-decoration: none; color: inherit; display: block;">
+                                        @if (gorev.YapildiMi)
+                                        {
+                                            <del class="text-muted" style="color: #a0a0a0 !important;">✔️ @gorev.GorevAdi</del>
+                                        }
+                                        else
+                                        {
+
+                                            <span style="font-weight: 600;">⬜ @gorev.GorevAdi</span>
+                                        }
+                                    </a>
+                                </div>
+                                <a href="/Home/GorevSil/@gorev.Id" class="text-danger" style="text-decoration: none;" title="Sil">❌</a>
+                            </div>
+                        }
+                    }
+                </div>
+                <form action="/Home/GorevEkle" method="post" class="mt-auto pt-3">
+                    <div class="input-group">
+                        <input type="text" name="gorevAdi" class="form-control" placeholder="Yeni görev..." required autocomplete="off" style="border-radius: 15px 0 0 15px;">
+                        <button class="btn text-white" type="submit" style="border-radius: 0 15px 15px 0; background-color: #8fa0c9; border:none; font-weight: bold;">Ekle</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card p-4 aesthetic-card h-100">
+                <h4 class="text-center mb-3 kart-baslik" style="color: #b2ad7f;">📖 Günlük</h4>
+                <form action="/Home/GunlukKaydet" method="post" class="d-flex flex-column h-100">
+                    <textarea name="gunlukMetni" class="form-control flex-grow-1" style="min-height: 200px;" placeholder="Bugün neler hissettin, neler yaşadın? Buraya dökülebilirsin...">@ViewBag.BugununGunlugu</textarea>
+                    <button type="submit" class="btn btn-outline-success mt-3 btn-custom w-100">Günlüğü Kaydet</button>
+                </form>
+                <a href="/Home/Gecmis" class="btn btn-sm mt-2 btn-custom w-100" style="background-color: rgba(255,255,255,0.6); color: #5a5a5a; border: 1px solid #ccc;">🕰️ Geçmişi Gör</a>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12 text-center">
+            <div class="p-3 mb-2" style="background: rgba(255,255,255,0.5); backdrop-filter: blur(5px); border-radius: 20px; display: inline-block; border: 2px dashed #ff8b94; box-shadow: 0 5px 15px rgba(251, 194, 235, 0.3); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                <span style="font-family: 'Caveat', cursive; font-size: 1.8rem; color: #d15661; font-weight: bold;">
+                    Arda Efe tarafından Zeynep için satır satır özenle kodlandı 💻
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
